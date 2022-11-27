@@ -1,14 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using drinks_info_console.APIConsumerServices;
+using drinks_info_console.UI;
 
 Console.WriteLine("Hello, World!");
 
 var categoryList = await DrinksProcessor.GetCategoriesListAsync();
 
-foreach (var category in categoryList)
-{
-    Console.WriteLine(category.CategoryName);
-}
+var tableBuilder = new TableBuilder();
+
+tableBuilder.DisplayTable(categoryList, "Categories");
 
 
 // list of categories
