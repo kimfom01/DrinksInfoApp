@@ -5,13 +5,13 @@ namespace drinks_info_console.UI;
 
 public class TableBuilder
 {
-    public void DisplayTable<T>(List<T> listOfObjectsToBuildTable, [Required] string tableName) where T : class
+    public void DisplayTable<T>(List<T> listOfObjectsToBuildTable, [Required] string columnName) where T : class
     {
         Console.Clear();
 
         ConsoleTableBuilder
             .From(listOfObjectsToBuildTable)
-            .WithTitle(tableName)
+            .WithColumn(columnName)
             .ExportAndWriteLine();
 
         Console.WriteLine();
