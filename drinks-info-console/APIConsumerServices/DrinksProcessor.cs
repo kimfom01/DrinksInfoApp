@@ -36,4 +36,20 @@ public class DrinksProcessor
 
         return drinkList;
     }
+
+    internal static async Task<List<DrinkDetail>> GetDrinksDetailsAsync(string id)
+    {
+        ApiClientHelper.InitializeClient();
+
+        List<DrinkDetail> drinkDetailList = new List<DrinkDetail>();
+
+        using (var stream = await ApiClientHelper.Client!.GetStreamAsync($"https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i={id}"))
+        {
+            var details = await JsonSerializer.DeserializeAsync<DrinkDetails>(stream);
+
+            drinkDetailList = details!.DrinkDetailList!;
+        }
+
+        return drinkDetailList;
+    }
 }
