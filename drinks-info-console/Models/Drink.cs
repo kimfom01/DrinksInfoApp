@@ -5,7 +5,7 @@ namespace drinks_info_console.Models;
 public class Drink
 {
     [JsonPropertyName("idDrink")]
-    public int Id { get; set; }
+    public string? Id { get; set; }
     [JsonPropertyName("strDrink")]
     public string? DrinkName { get; set; }
 }
