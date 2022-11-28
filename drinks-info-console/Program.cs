@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using drinks_info_console.APIConsumerServices;
 using drinks_info_console.UI;
+using drinks_info_console.Input;
 
 Console.WriteLine("Hello, World!");
 
@@ -9,6 +10,9 @@ var categoryList = await DrinksProcessor.GetCategoriesListAsync();
 var tableBuilder = new TableBuilder();
 
 tableBuilder.DisplayTable(categoryList, "Categories");
+
+Validation validator = new();
+Console.WriteLine(validator.IsValidId("6"));
 
 
 // list of categories
