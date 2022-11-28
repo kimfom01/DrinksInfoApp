@@ -12,4 +12,9 @@ public class Validation
     {
         return !String.IsNullOrEmpty(text);
     }
+
+    internal bool IsValidAns(string ans)
+    {
+        return ans == "y" || ans == "n";
+    }
 }
