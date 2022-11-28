@@ -7,4 +7,9 @@ public class Validation
         int _;
         return int.TryParse(id, out _) && _ > 0;
     }
+
+    public bool IsValidString(string text)
+    {
+        return !String.IsNullOrEmpty(text);
+    }
 }
