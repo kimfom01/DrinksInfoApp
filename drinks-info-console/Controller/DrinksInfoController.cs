@@ -15,21 +15,25 @@ public static class DrinksInfoController
     {
         string ans, categoryName, drinkId;
         List<DrinkDetail> drinkDetails;
+        List<object> cleanDrinkDetails;
+
         do
         {
             categoryName = await SelectCategoryAsync();
             drinkId = await SelectDrinkAsync(categoryName);
 
             drinkDetails = await DrinksProcessor.GetDrinksDetailsAsync(drinkId);
-            TableBuilder.DisplayTable(drinkDetails, "");
+            cleanDrinkDetails = GetCleanDetailsList(drinkDetails);
+
+            TableBuilder.DisplayTable(cleanDrinkDetails, "");
 
             Console.Write("Do you want to check another drink? (y/n): ");
-            ans = UserInput.GetInput();
+            ans = UserInput.GetInput().ToLower();
             while (!Validator.IsValidAns(ans))
             {
                 Console.WriteLine("Invalid Input!");
                 Console.Write("Do you want to check another drink? (y/n): ");
-                ans = UserInput.GetInput();
+                ans = UserInput.GetInput().ToLower();
             }
         } while (ans == "y");
     }
@@ -70,10 +74,26 @@ public static class DrinksInfoController
         return id;
     }
 
-    private static List<DrinkDetail> CleanUpDetailsList(List<DrinkDetail> drinkDetails)
+    private static List<object> GetCleanDetailsList(List<DrinkDetail> drinkDetails)
     {
-        // remove all the null values and return cleaned up list
+        // Used reflection to get the properties of the DrinkDetails object 
+        // and passed them as list of property object using an anonymous object 
+        List<object> cleanDrinkDetails = new();
+        foreach (var detail in drinkDetails)
+        {
+            var type = detail.GetType();
+            foreach (var prop in type.GetProperties())
+            {
+                var property = prop.GetValue(detail);
+                if (property is null)
+                {
+                    continue;
+                }
 
-        return drinkDetails;
+                cleanDrinkDetails.Add(new { Value = property });
+            }
+        }
+
+        return cleanDrinkDetails;
     }
 }
