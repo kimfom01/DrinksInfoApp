@@ -2,18 +2,20 @@
 using drinks_info_console.APIConsumerServices;
 using drinks_info_console.UI;
 using drinks_info_console.Input;
+using drinks_info_console.Controller;
 
 Console.WriteLine("Hello, World!");
 
-var categoryList = await DrinksProcessor.GetCategoriesListAsync();
+// var categoryList = await DrinksProcessor.GetCategoriesListAsync();
 
-var tableBuilder = new TableBuilder();
+// var tableBuilder = new TableBuilder();
 
-tableBuilder.DisplayTable(categoryList, "Categories");
+// tableBuilder.DisplayTable(categoryList, "Categories");
 
-Validation validator = new();
-Console.WriteLine(validator.IsValidId("6"));
+// Validation validator = new();
+// Console.WriteLine(validator.IsValidId("6"));
 
+await DrinksInfoController.StartProgram();
 
 // list of categories
 // www.thecocktaildb.com/api/json/v1/1/list.php?c=list
