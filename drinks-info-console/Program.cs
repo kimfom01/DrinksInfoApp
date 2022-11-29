@@ -1,27 +1,3 @@
-﻿// See https://aka.ms/new-console-template for more information
-using drinks_info_console.APIConsumerServices;
-using drinks_info_console.UI;
-using drinks_info_console.Input;
-using drinks_info_console.Controller;
-
-Console.WriteLine("Hello, World!");
-
-// var categoryList = await DrinksProcessor.GetCategoriesListAsync();
-
-// var tableBuilder = new TableBuilder();
-
-// tableBuilder.DisplayTable(categoryList, "Categories");
-
-// Validation validator = new();
-// Console.WriteLine(validator.IsValidId("6"));
+﻿using drinks_info_console.Controller;
 
 await DrinksInfoController.StartProgram();
-
-// list of categories
-// www.thecocktaildb.com/api/json/v1/1/list.php?c=list
-
-// filter by category to get drinks
-// https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink
-
-// fetch drink details by id
-// https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007
