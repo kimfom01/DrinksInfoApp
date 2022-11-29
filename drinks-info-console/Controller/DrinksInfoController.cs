@@ -44,6 +44,18 @@ public static class DrinksInfoController
 
         TableBuilder.DisplayTable(categoryList, "Category");
 
+        var categoryChoice = GetValidCategoryChoice();
+        while (!Validator.IsValidCategory(categoryList, categoryChoice))
+        {
+            Console.WriteLine("Invalid Category!");
+            categoryChoice = GetValidCategoryChoice();
+        }
+
+        return categoryChoice;
+    }
+
+    private static string GetValidCategoryChoice()
+    {
         Console.Write("Enter a category name to select: ");
         var categoryChoice = UserInput.GetInput();
         while (!Validator.IsValidString(categoryChoice))
@@ -61,7 +73,18 @@ public static class DrinksInfoController
         var drinksList = await DrinksProcessor.GetDrinksListAsync(category);
 
         TableBuilder.DisplayTable(drinksList, category);
+        var id = GetValidIdChoice();
+        while (!Validator.IsValidDrinkId(drinksList, id))
+        {
+            Console.WriteLine("Invalid Input!");
+            id = GetValidIdChoice();
+        }
 
+        return id;
+    }
+
+    private static string GetValidIdChoice()
+    {
         Console.Write("Enter a category Id to display drinks: ");
         var id = UserInput.GetInput();
         while (!Validator.IsValidId(id))
