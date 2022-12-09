@@ -22,7 +22,7 @@ public class Validation
 
     public bool IsValidCategory(List<Category> categoryList, string category)
     {
-        return categoryList.Any(x => x.CategoryName == category);
+        return categoryList.Any(x => x.CategoryName.ToLower() == category.ToLower());
     }
 
     public bool IsValidDrinkId(List<Drink> drinkList, string id)
