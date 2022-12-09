@@ -10,6 +10,7 @@ public static class DrinksInfoController
     private static UserInput UserInput = new UserInput();
     private static TableBuilder TableBuilder = new TableBuilder();
     private static Validation Validator = new Validation();
+    private static DrinksProcessor DrinksProcessor = new(new HttpClient());
 
     public static async Task StartProgram()
     {
